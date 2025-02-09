@@ -12,13 +12,12 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 drop-shadow-md">
             <div class="flex">
                 <a class="btn btn-ghost text-xl">Admin</a>
             </div>
             <div class="flex flex-1 justify-start px-2">
-                <NavLink class="text-white" :href="route('dashboard')" :active="route().current('dashboard')">
+                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                     Dashboard
                 </NavLink> 
             </div>
@@ -59,7 +58,7 @@ const showingNavigationDropdown = ref(false);
                             </a>
                         </li>
                         <li>
-                            <DropdownLink class="text-white" :href="route('logout')" method="post" as="button">
+                            <DropdownLink :href="route('logout')" method="post" as="button">
                                 Log Out
                             </DropdownLink>
                         </li>
