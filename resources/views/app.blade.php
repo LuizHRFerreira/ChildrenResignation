@@ -6,16 +6,111 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!--begin::Fonts-->
+            <link
+            rel="stylesheet"
+            href="{{ asset('css/source-sans.css') }}"
+            integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
+            crossorigin="anonymous"
+        />
+        <!--end::Fonts-->
+        <!--begin::Third Party Plugin(OverlayScrollbars)-->
+        <link
+            rel="stylesheet"
+            href="{{ asset('css/overlayscrollbars.min.css') }}"
+        />
+        <!--end::Third Party Plugin(OverlayScrollbars)-->
+        <!--begin::Third Party Plugin(Bootstrap Icons)-->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+            integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI="
+            crossorigin="anonymous"
+        />
+        <!--end::Third Party Plugin(Bootstrap Icons)-->
+        <!--begin::Required Plugin(AdminLTE)-->
+        <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}" />
+        <!--end::Required Plugin(AdminLTE)-->
 
         <!-- Scripts -->
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
-    <body class="font-sans antialiased">
-        @inertia
+    <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary" data-bs-theme="dark">
+        <div class="app-wrapper">
+            <!--begin::Header-->
+            @include('layouts.header')
+            <!--end::Header-->
+
+            <!--begin::Sidebar-->
+            @include('layouts.sidebar')
+            <!--end::Sidebar-->
+
+            <!--begin::App Main-->
+            <main class="app-main">
+                <!--begin::App Content Header-->
+                <div class="app-content-header">
+                <!--begin::Container-->
+                <div class="container-fluid">
+                    @inertia
+                </div>
+                <!--end::Container-->
+                </div>
+                <!--end::App Content Header-->
+            </main>
+            <!--end::App Main-->
+
+            <!--begin::Footer-->
+            <footer class="app-footer">
+                <!--begin::To the end-->
+                <div class="float-end d-none d-sm-inline">Anything you want</div>
+                <!--end::To the end-->
+                <!--begin::Copyright-->
+                <strong>
+                Copyright &copy; 2014-2024&nbsp;
+                <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+                </strong>
+                All rights reserved.
+                <!--end::Copyright-->
+            </footer>
+            <!--end::Footer-->
+        </div>
+            <!--end::App Wrapper-->
+        <!--begin::Script-->
+        <!--begin::Third Party Plugin(OverlayScrollbars)-->
+        <script src="{{ asset('js/overlayscrollbars.browser.es6.min.js') }}"></script>
+        <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
+        <script src="{{ asset('js/adminlte.js') }}"></script>
+        <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+        <script>
+        const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+        const Default = {
+            scrollbarTheme: 'os-theme-light',
+            scrollbarAutoHide: 'leave',
+            scrollbarClickScroll: true,
+        };
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+            if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+            OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                scrollbars: {
+                theme: Default.scrollbarTheme,
+                autoHide: Default.scrollbarAutoHide,
+                clickScroll: Default.scrollbarClickScroll,
+                },
+            });
+            }
+        });
+        </script>
+        <!--end::OverlayScrollbars Configure-->
+        <!--end::Script-->
     </body>
+    <script>
+       
+    </script>
 </html>
