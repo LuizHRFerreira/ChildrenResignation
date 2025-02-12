@@ -10,6 +10,12 @@
         </li>
         <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
         <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+            Dashboard
+        </NavLink> 
+        <NavLink :href="route('profile.edit')" :active="route().current('profile.edit')">
+                    Profile
+        </NavLink> 
         </ul>
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->

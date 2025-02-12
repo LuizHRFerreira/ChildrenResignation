@@ -6,8 +6,71 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import { createPopper } from '@popperjs/core';
 
-const showingNavigationDropdown = ref(false);
+import { onMounted, watch } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+
+// import '../../../public/css/overlayscrollbars.min.css';
+// // import '../../../public/js/popper.min.js';
+// import '../../../public/js/bootstrap.min.js';
+// import '../../../public/js/adminlte.js';
+
+const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+const Default = {
+    scrollbarTheme: 'os-theme-light',
+    scrollbarAutoHide: 'leave',
+    scrollbarClickScroll: true,
+};
+
+
+const initializeAdminLTE = () => {
+    console.log("🔄 Recarregando AdminLTE...");
+    
+    // Remove o script adminlte.js se já estiver carregado
+    const oldScript = document.querySelector('script[src*="adminlte.js"]');
+    if (oldScript) {
+        oldScript.remove();
+    }
+
+    // Cria um novo script para recarregar adminlte.js
+    const script = document.createElement("script");
+    script.src = "/js/adminlte.js"; // Caminho correto do seu arquivo
+    script.onload = () => console.log("✅ AdminLTE carregado novamente!");
+    document.body.appendChild(script);
+};
+
+const initializeSidebar = () => {
+    const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+    if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+        OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+            scrollbars: {
+                theme: Default.scrollbarTheme,
+                autoHide: Default.scrollbarAutoHide,
+                clickScroll: Default.scrollbarClickScroll,
+            },
+        });
+    }
+};
+
+// Reexecuta o código ao montar a página
+onMounted(() => {
+    initializeSidebar();
+    initializeAdminLTE();
+});
+
+// Reexecuta o código sempre que o Inertia trocar de rota
+const page = usePage();
+watch(() => page.url, () => {
+    setTimeout(() => {
+        initializeSidebar();
+        initializeAdminLTE();
+    }, 100);
+});
+
+
+
+
 </script>
 
 <template>
@@ -25,6 +88,12 @@ const showingNavigationDropdown = ref(false);
                     </li>
                     <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
                     <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        Dashboard
+                    </NavLink> 
+                    <NavLink :href="route('profile.edit')" :active="route().current('profile.edit')">
+                        Profile edit
+                    </NavLink> 
                 </ul>
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
