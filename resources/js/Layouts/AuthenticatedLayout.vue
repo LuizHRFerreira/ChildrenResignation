@@ -68,9 +68,6 @@ onMounted(() => {
                     <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                         Dashboard
                     </NavLink>
-                    <NavLink :href="route('profile.edit')" :active="route().current('profile.edit')">
-                        Profile edit
-                    </NavLink>
                 </ul>
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
@@ -104,7 +101,10 @@ onMounted(() => {
 
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                               
+                                <NavLink class="btn btn-default btn-flat" :href="route('profile.edit')" :active="route().current('profile.edit')">
+                                    Profile
+                                </NavLink>
                                 <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
                             </li>
                             <!--end::Menu Footer-->
