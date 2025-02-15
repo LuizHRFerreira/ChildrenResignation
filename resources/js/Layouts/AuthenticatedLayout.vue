@@ -11,18 +11,12 @@ import { createPopper } from '@popperjs/core';
 import { onMounted, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 
-// import '../../../public/css/overlayscrollbars.min.css';
-// // import '../../../public/js/popper.min.js';
-// import '../../../public/js/bootstrap.min.js';
-// import '../../../public/js/adminlte.js';
-
 const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
 const Default = {
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'leave',
     scrollbarClickScroll: true,
 };
-
 
 const rebootAdminLTE = () => {
 
@@ -34,32 +28,6 @@ const rebootAdminLTE = () => {
     const script = document.createElement("script");
     script.src = "/js/adminlte.js";
     script.onload = () => console.log("✅");
-    document.body.appendChild(script);
-};
-
-const rebootgetBootstrapJs = () => {
-
-    const oldScript = document.querySelector('script[src*="bootstrap.bundle.min.js"]');
-    if (oldScript) {
-        oldScript.remove();
-    }
-
-    const script = document.createElement("script");
-    script.src = "/js/bootstrap/bootstrap.bundle.min.js";
-    script.onload = () => console.log("🎏");
-    document.body.appendChild(script);
-};
-
-const rebootgetPopper = () => {
-
-    const oldScript = document.querySelector('script[src*="popper.min.js"]');
-    if (oldScript) {
-        oldScript.remove();
-    }
-
-    const script = document.createElement("script");
-    script.src = "/js/popper.min.js";
-    script.onload = () => console.log("🎏");
     document.body.appendChild(script);
 };
 
@@ -78,22 +46,19 @@ const initializeSidebar = () => {
 
 
 onMounted(() => {
-    // rebootgetPopper();
     initializeSidebar();
     rebootAdminLTE();
-    // rebootgetBootstrapJs();
 });
 
-const page = usePage();
-watch(() => page.url, () => {
-    setTimeout(() => {
-        rebootgetPopper();
-        initializeSidebar();
-        rebootAdminLTE();
-        rebootgetBootstrapJs();
-        console.log('reboot on page');
-    }, 100);
-});
+// const page = usePage();
+// watch(() => page.url, () => {
+//     setTimeout(() => {
+       
+//         initializeSidebar();
+//         rebootAdminLTE();
+       
+//     }, 100);
+// });
 
 </script>
 

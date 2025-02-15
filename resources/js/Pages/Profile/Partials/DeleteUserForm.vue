@@ -39,28 +39,27 @@ const closeModal = () => {
 </script>
 
 <template>
-    <section class="space-y-6">
-        <header>
-            <h2 class="text-lg font-medium text-gray-900">
-                Delete Account
-            </h2>
+    <h4>Delete Account</h4>
+    <div class="card card-primary card-outline mb-4">
+        <div class="card-header">
+            <div class="card-title">
+            Once your account is deleted, all of its resources and data will
+            be permanently deleted. Before deleting your account, please
+            download any data or information that you wish to retain.
+            </div>
+        </div>
 
-            <p class="mt-1 text-sm text-gray-600">
-                Once your account is deleted, all of its resources and data will
-                be permanently deleted. Before deleting your account, please
-                download any data or information that you wish to retain.
-            </p>
-        </header>
-
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <div class="card-boody">
+            <div class="m-3">
+                <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+            </div>
+        </div>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="p-6">
-                <h2
-                    class="text-lg font-medium text-gray-900"
-                >
+                <h4>
                     Are you sure you want to delete your account?
-                </h2>
+                </h4>
 
                 <p class="mt-1 text-sm text-gray-600">
                     Once your account is deleted, all of its resources and data
@@ -88,7 +87,7 @@ const closeModal = () => {
                     <InputError :message="form.errors.password" class="mt-2" />
                 </div>
 
-                <div class="mt-6 flex justify-end">
+                <div class="mt-3">
                     <SecondaryButton @click="closeModal">
                         Cancel
                     </SecondaryButton>
@@ -104,5 +103,5 @@ const closeModal = () => {
                 </div>
             </div>
         </Modal>
-    </section>
+    </div>
 </template>

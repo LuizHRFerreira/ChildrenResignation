@@ -19,30 +19,50 @@ defineProps({
     <Head title="Profile" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight text-gray-800"
-            >
-                Profile
-            </h2>
-        </template>
 
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                <div
-                    class="bg-white p-4 shadow sm:rounded-lg sm:p-8"
-                >
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+
+                    <div class="row mb-3 mt-3">
+                        <div class="col-sm-6">
+                        <h3 class="mb-0">Perfil</h3>
+                        </div>
+                        <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-end">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Unfixed Layout</li>
+                        </ol>
+                        </div>
+                    </div>
+
+                    <!-- Update profile information -->
                     <UpdateProfileInformationForm
                         :must-verify-email="mustVerifyEmail"
                         :status="status"
                         class="max-w-xl"
                     />
+
+                    <!-- Update password information -->
+                    <UpdatePasswordForm />
+
+                    <!-- Delete account -->
+                    <DeleteUserForm />
+                </div>
+            </div>
+        </div>
+        <!-- <div class="py-12">
+            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
+                <div
+                    class="bg-white p-4 shadow sm:rounded-lg sm:p-8"
+                >
+
                 </div>
 
                 <div
                     class="bg-white p-4 shadow sm:rounded-lg sm:p-8"
                 >
-                    <UpdatePasswordForm class="max-w-xl" />
+                  
                 </div>
 
                 <div
@@ -51,6 +71,6 @@ defineProps({
                     <DeleteUserForm class="max-w-xl" />
                 </div>
             </div>
-        </div>
+        </div> -->
     </AuthenticatedLayout>
 </template>
