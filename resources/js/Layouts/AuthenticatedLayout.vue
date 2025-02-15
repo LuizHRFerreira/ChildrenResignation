@@ -24,19 +24,42 @@ const Default = {
 };
 
 
-const initializeAdminLTE = () => {
-    console.log("🔄 Recarregando AdminLTE...");
-    
-    // Remove o script adminlte.js se já estiver carregado
+const rebootAdminLTE = () => {
+
     const oldScript = document.querySelector('script[src*="adminlte.js"]');
     if (oldScript) {
         oldScript.remove();
     }
 
-    // Cria um novo script para recarregar adminlte.js
     const script = document.createElement("script");
-    script.src = "/js/adminlte.js"; // Caminho correto do seu arquivo
-    script.onload = () => console.log("✅ AdminLTE carregado novamente!");
+    script.src = "/js/adminlte.js";
+    script.onload = () => console.log("✅");
+    document.body.appendChild(script);
+};
+
+const rebootgetBootstrapJs = () => {
+
+    const oldScript = document.querySelector('script[src*="bootstrap.bundle.min.js"]');
+    if (oldScript) {
+        oldScript.remove();
+    }
+
+    const script = document.createElement("script");
+    script.src = "/js/bootstrap/bootstrap.bundle.min.js";
+    script.onload = () => console.log("🎏");
+    document.body.appendChild(script);
+};
+
+const rebootgetPopper = () => {
+
+    const oldScript = document.querySelector('script[src*="popper.min.js"]');
+    if (oldScript) {
+        oldScript.remove();
+    }
+
+    const script = document.createElement("script");
+    script.src = "/js/popper.min.js";
+    script.onload = () => console.log("🎏");
     document.body.appendChild(script);
 };
 
@@ -53,23 +76,24 @@ const initializeSidebar = () => {
     }
 };
 
-// Reexecuta o código ao montar a página
+
 onMounted(() => {
+    // rebootgetPopper();
     initializeSidebar();
-    initializeAdminLTE();
+    rebootAdminLTE();
+    // rebootgetBootstrapJs();
 });
 
-// Reexecuta o código sempre que o Inertia trocar de rota
 const page = usePage();
 watch(() => page.url, () => {
     setTimeout(() => {
+        rebootgetPopper();
         initializeSidebar();
-        initializeAdminLTE();
+        rebootAdminLTE();
+        rebootgetBootstrapJs();
+        console.log('reboot on page');
     }, 100);
 });
-
-
-
 
 </script>
 
@@ -223,15 +247,13 @@ watch(() => page.url, () => {
                     <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="../../../public/assets/img/user2-160x160.jpg"
-                                class="user-image rounded-circle shadow" alt="User Image" />
-                            <span class="d-none d-md-inline">Alexander Pierce</span>
+                            <img src="../../../public/assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image" />
+                           
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
-                                <img src="../../../public/assets/img/user2-160x160.jpg" class="rounded-circle shadow"
-                                    alt="User Image" />
+                                <img src="../../../public/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image" />
                                 <p>
                                     Alexander Pierce - Web Developer
                                     <small>Member since Nov. 2023</small>
