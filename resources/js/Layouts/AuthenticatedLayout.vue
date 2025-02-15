@@ -50,16 +50,6 @@ onMounted(() => {
     rebootAdminLTE();
 });
 
-// const page = usePage();
-// watch(() => page.url, () => {
-//     setTimeout(() => {
-       
-//         initializeSidebar();
-//         rebootAdminLTE();
-       
-//     }, 100);
-// });
-
 </script>
 
 <template>
@@ -259,8 +249,7 @@ onMounted(() => {
                 <!--begin::Brand Link-->
                 <a href="../index.html" class="brand-link">
                     <!--begin::Brand Image-->
-                    <img src="../../../public/assets/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                        class="brand-image opacity-75 shadow" />
+                    <img src="../../../public/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
                     <!--end::Brand Image-->
                     <!--begin::Brand Text-->
                     <span class="brand-text fw-light">Meu Projeto</span>

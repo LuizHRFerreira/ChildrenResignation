@@ -21,7 +21,45 @@ const submit = () => {
 };
 </script>
 
+<style>
+.card-body {
+    width: 30vh;
+}
+
+.logo {
+    width: 60px;
+}
+</style>
+
 <template>
+    <div class="position-relative min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="card auth-card">
+                <div class="card-body">
+                    <p class="text-center">Enter your email to reset your password</p>
+                    <form @submit.prevent="submit">
+                        <div>
+                            <InputLabel for="email" value="Email" />
+
+                            <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required
+                                autofocus autocomplete="username" />
+
+                            <InputError class="mt-2" :message="form.errors.email" />
+                        </div>
+
+                        <div class="mt-4 flex items-center justify-end">
+                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Email Password Reset Link
+                            </PrimaryButton>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- <template>
     <GuestLayout>
         <Head title="Forgot Password" />
 
@@ -38,31 +76,6 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
 
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <PrimaryButton
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Email Password Reset Link
-                </PrimaryButton>
-            </div>
-        </form>
     </GuestLayout>
-</template>
+</template> -->
