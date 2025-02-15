@@ -1,6 +1,16 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import DataTable from 'datatables.net-vue3'
+import Select from 'datatables.net-select';
+
+DataTable.use(Select);
+
+const data = [
+  ["Ana", 24, "ana@gmail.com"],
+  ["Paulo Santos", 44, "paulo@gmail.com"],
+  ["Ricardo Soares", 67, "ricardo@gmail.com"],
+];
 </script>
 
 <template>
@@ -24,7 +34,22 @@ import { Head } from '@inertiajs/vue3';
             </div>
           </div>
 
-         
+          <div class="card card-primary card-outline mb-4">
+            <div class="card-header">
+              <div class="card-title">Mostrando informações dos usuários</div>
+            </div>
+            <div class="card-body">
+              <DataTable :data="data" class="display">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+              </DataTable>
+            </div>
+          </div>
 
         </div>
       </div>

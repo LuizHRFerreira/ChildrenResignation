@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/overlayscrollbars.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}" />
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css"> --}}
     <script src="{{ asset('js/overlayscrollbars.browser.es6.min.js') }}"></script>
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
