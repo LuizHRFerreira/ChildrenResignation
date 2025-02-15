@@ -32,6 +32,66 @@ function handleImageError() {
         margin-right: 4px;
     }
 </style>
+
+<style>
+/* From Uiverse.io by AqFox */ 
+.spinner {
+ width: 44px;
+ height: 44px;
+ animation: spinner-y0fdc1 2s infinite ease;
+ transform-style: preserve-3d;
+}
+
+.spinner > div {
+ background-color: rgba(0,77,255,0.2);
+ height: 100%;
+ position: absolute;
+ width: 100%;
+ border: 2px solid #004dff;
+}
+
+.spinner div:nth-of-type(1) {
+ transform: translateZ(-22px) rotateY(180deg);
+}
+
+.spinner div:nth-of-type(2) {
+ transform: rotateY(-270deg) translateX(50%);
+ transform-origin: top right;
+}
+
+.spinner div:nth-of-type(3) {
+ transform: rotateY(270deg) translateX(-50%);
+ transform-origin: center left;
+}
+
+.spinner div:nth-of-type(4) {
+ transform: rotateX(90deg) translateY(-50%);
+ transform-origin: top center;
+}
+
+.spinner div:nth-of-type(5) {
+ transform: rotateX(-90deg) translateY(50%);
+ transform-origin: bottom center;
+}
+
+.spinner div:nth-of-type(6) {
+ transform: translateZ(22px);
+}
+
+@keyframes spinner-y0fdc1 {
+ 0% {
+  transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+ }
+
+ 50% {
+  transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+ }
+
+ 100% {
+  transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+ }
+}
+</style>
 <template>
     
     <div class="col-lg-8 mx-auto p-4 py-md-5">
@@ -49,8 +109,17 @@ function handleImageError() {
                 get started.</p>
 
 
-            <hr class="col-3 col-md-2 mb-5">
-
+                <div class="text-center m-5">
+                    <div class="spinner">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    </div>
+                </div>
+        
             <div class="row g-5">
                 <div class="col-md-6">
                     <h2 class="text-body-emphasis">Starter projects</h2>
