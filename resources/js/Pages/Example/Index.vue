@@ -1,0 +1,26 @@
+<script setup>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import NavLink from '@/Components/NavLink.vue';
+</script>
+
+<template>
+    <Head title="Examples" />
+    <AuthenticatedLayout>
+
+        <div class="row mb-3 mt-3">
+            <div class="col-sm-6">
+              <h3 class="mb-0">Título da página</h3>
+            </div>
+            <div class="col-sm-6">
+              <div class="float-sm-end">
+
+                <NavLink :href="route('example.create')" :active="route().current('example.create')">
+                    <PrimaryButton>Novo</PrimaryButton>
+                </NavLink>
+              </div>
+            </div>
+          </div>
+
+    </AuthenticatedLayout>
+</template>

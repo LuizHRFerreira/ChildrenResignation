@@ -7,12 +7,16 @@ import Select from 'datatables.net-select';
 DataTable.use(Select);
 
 const data = [
-  ["Ana", 24, "ana@gmail.com"],
-  ["Paulo Santos", 44, "paulo@gmail.com"],
-  ["Ricardo Soares", 67, "ricardo@gmail.com"],
+  ["Ana", 24, "ana@gmail.com", "ksd"],
+  ["Paulo Santos", 44, "paulo@gmail.com", "ass"],
+  ["Ricardo Soares", 67, "ricardo@gmail.com", 9823],
 ];
+
 </script>
 
+<style>
+@import 'datatables.net-dt';
+</style>
 <template>
 
   <Head title="Dashboard" />
@@ -45,6 +49,7 @@ const data = [
                     <th>Nome</th>
                     <th>Idade</th>
                     <th>Email</th>
+                    <th>Código</th>
                   </tr>
                 </thead>
               </DataTable>

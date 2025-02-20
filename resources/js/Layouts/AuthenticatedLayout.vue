@@ -151,10 +151,10 @@ onMounted(() => {
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../index.html" class="nav-link">
+                                    <NavLink class="btn btn-default btn-flat nav-link" :href="route('example.index')" :active="route().current('example.index')">
                                         <i class="nav-icon bi bi-circle"></i>
-                                        <p>Dashboard v1</p>
-                                    </a>
+                                        <p>Ecamples</p>
+                                    </NavLink>
                                 </li>
                                 <li class="nav-item">
                                     <a href="../index2.html" class="nav-link">
@@ -256,7 +256,13 @@ onMounted(() => {
             <div class="app-content-header">
                 <!--begin::Container-->
                 <div class="container-fluid">
-                    <slot />
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container">
+                                <slot />
+                            </div>
+                        </div> 
+                    </div>                   
                 </div>
                 <!--end::Container-->
             </div>
