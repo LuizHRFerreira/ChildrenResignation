@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Example\ExampleStoreRequest;
 use App\Models\Example;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -28,9 +30,20 @@ class ExampleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ExampleStoreRequest $request): RedirectResponse
     {
-        //
+        
+        \DB::beginTransaction();
+        try {
+            Example::create(request()->all());
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('message', trans('messages.error_saving'))->with('type', 'error');
+        }
+
+        \DB::commit();
+        return redirect()->route('example.index')->with('message', trans('messages.success_saving'))->with('type', 'success');
+        
     }
 
     /**

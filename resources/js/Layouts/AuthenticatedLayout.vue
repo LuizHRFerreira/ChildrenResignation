@@ -259,6 +259,18 @@ onMounted(() => {
                     <div class="row">
                         <div class="col-12">
                             <div class="container">
+                                <div v-if="$page.props.flash.message">
+                                    <div class="alert alert-primary"
+                                    :class="{
+                                        'alert-success': $page.props.flash.type === 'success',
+                                        'alert-danger': $page.props.flash.type === 'error',
+                                        'alert-warning': $page.props.flash.type === 'warning',
+                                        'alert-info': $page.props.flash.type === 'info',
+                                    }" 
+                                    role="alert">
+                                        {{ $page.props.flash.message }}
+                                    </div>
+                                </div>
                                 <slot />
                             </div>
                         </div> 
