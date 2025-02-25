@@ -16,7 +16,10 @@ class ExampleController extends Controller
      */
     public function index(Request $request): Response
     {
-        return Inertia::render('Example/Index');
+        $examples = Example::paginate(20);
+        return Inertia::render('Example/Index', [
+            'examples' => $examples,
+        ]);
     }
 
     /**

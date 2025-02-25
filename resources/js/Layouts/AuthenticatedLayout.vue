@@ -27,7 +27,7 @@ const rebootAdminLTE = () => {
 
     const script = document.createElement("script");
     script.src = "/js/adminlte.js";
-    script.onload = () => console.log("✅");
+    script.onload;
     document.body.appendChild(script);
 };
 
