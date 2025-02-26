@@ -10,6 +10,7 @@ import { createPopper } from '@popperjs/core';
 
 import { onMounted, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3';
+import { data } from 'autoprefixer';
 
 const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
 const Default = {
@@ -17,6 +18,8 @@ const Default = {
     scrollbarAutoHide: 'leave',
     scrollbarClickScroll: true,
 };
+
+
 
 const rebootAdminLTE = () => {
 
@@ -43,7 +46,6 @@ const initializeSidebar = () => {
         });
     }
 };
-
 
 onMounted(() => {
     initializeSidebar();

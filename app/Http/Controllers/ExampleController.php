@@ -16,9 +16,15 @@ class ExampleController extends Controller
      */
     public function index(Request $request): Response
     {
-        $examples = Example::paginate(20);
+        $query = Example::orderBy('id', 'desc');
+        // dd(request('search'));
+        if(request('search')) {
+            $query->where('name', 'LIKE', '%'.request('search').'%');
+        }
+        // $query->paginate(20);
+        // dd($query->get());
         return Inertia::render('Example/Index', [
-            'examples' => $examples,
+            'examples' => $query->paginate(20),
         ]);
     }
 

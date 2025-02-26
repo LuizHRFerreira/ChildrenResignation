@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <nav v-if="links.length > 3">
+  <nav>
     <ul class="pagination">
       <li v-for="(link, index) in links" :key="index" 
           :class="['page-item', { 'active': link.active, 'disabled': !link.url }]">

@@ -23,6 +23,7 @@ class ExampleStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd(request()->all());
         return [
             'name'              => ['required', 'string', 'max:255'],
             'value'             => ['required', 'string', 'max:255'],
@@ -32,13 +33,15 @@ class ExampleStoreRequest extends FormRequest
         ];
     }
 
-    public function messages(): array
+    public function attributes(): array
     {
         return [
-            'name.required' => 'O nome é obrigatório',
-            'value.required' => 'O valor é obrigatório',
-            'start_date.required' => 'A data inicial é obrigatória',
-            'end_date.required' => 'A data final é obrigatória',
+            'descriptions' => 'descrição',
+            'name' => 'nome',
+            'value' => 'valor',
+            'start_date' => 'data inicial',
+            'end_date' => 'data final',
+            'descriptions' => 'descrição',
         ];
     }
 }

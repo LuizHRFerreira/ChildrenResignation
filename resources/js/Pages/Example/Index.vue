@@ -3,12 +3,22 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
 import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { Link } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
+import { router, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
 const examples = page.props.examples;
+const search = ref(usePage().props.search || '');
+
+watch(search, (newValue) => {
+  router.get(route('example.index'), { search: newValue }, {
+    replace: true,
+    preserveState: true
+  });
+});
 </script>
 
 <template>
@@ -21,7 +31,7 @@ const examples = page.props.examples;
           </div>
           <div class="col-sm-6">
             <div class="float-sm-end">
-
+              
               <NavLink :href="route('example.create')" :active="route().current('example.create')">
                   <PrimaryButton>Novo</PrimaryButton>
               </NavLink>
@@ -35,7 +45,8 @@ const examples = page.props.examples;
             </div>
             <div class="card-body">
               <div class="float-end">
-                <TextInput id="search" type="text" placeholder="Pesquisar..."/>
+                {{ search }}
+                <TextInput v-model="search" id="search" type="text" placeholder="Pesquisar..."/>
               </div>
               <table class="table table-striped table-hover">
                 <thead>
