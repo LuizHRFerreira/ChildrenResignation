@@ -41,7 +41,7 @@ watch(search, (newValue) => {
 
         <div class="card card-primary card-outline mb-4">
             <div class="card-header">
-              <div class="card-title">Mostrando informações dos usuários</div>
+              <div class="card-title">Mostrando informações dos usuários<i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
             </div>
             <div class="card-body">
               <div class="float-end">
@@ -54,6 +54,7 @@ watch(search, (newValue) => {
                     <th scope="col">Nome</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,6 +62,7 @@ watch(search, (newValue) => {
                     <th>{{ example.name }}</th>
                     <td>{{ example.value }}</td>
                     <td>{{ example.descriptions }}</td>
+                    <td>  <PrimaryButton>Editar</PrimaryButton></td>
                   </tr>
                 </tbody>
               </table>
