@@ -22,7 +22,7 @@ class ExampleController extends Controller
         }
         // dd($query->get());
         return Inertia::render('Example/Index', [
-            'examples' => $query->paginate(20),
+            'examples' => $query->paginate(10),
         ]);
     }
 

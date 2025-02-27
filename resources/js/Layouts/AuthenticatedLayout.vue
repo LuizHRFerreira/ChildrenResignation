@@ -7,6 +7,7 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 import { createPopper } from '@popperjs/core';
+import ThemeChanger from '@/Components/ThemeChanger.vue';
 
 import { onMounted, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3';
@@ -74,6 +75,9 @@ onMounted(() => {
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <ThemeChanger />
+                    </li>
                     <!--begin::Fullscreen Toggle-->
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-lte-toggle="fullscreen">
