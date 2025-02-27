@@ -66,9 +66,12 @@ class ExampleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Example $example)
+    public function edit()
     {
-        //
+        $example = Example::find(request()->example_id);
+        return Inertia::render('Example/Edit', [
+            'example' => $example
+        ]);
     }
 
     /**

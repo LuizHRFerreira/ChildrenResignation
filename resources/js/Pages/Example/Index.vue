@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import SmallEditButton from '@/Components/SmallEditButton.vue';
+import SmallRemoveButton from '@/Components/SmallRemoveButton.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { computed } from 'vue';
 import Pagination from '@/Components/Pagination.vue';
@@ -62,7 +64,12 @@ watch(search, (newValue) => {
                     <th>{{ example.name }}</th>
                     <td>{{ example.value }}</td>
                     <td>{{ example.descriptions }}</td>
-                    <td>  <PrimaryButton>Editar</PrimaryButton></td>
+                    <td class="d-flex">
+                      <NavLink :href="route('example.edit', { example_id: example.id })">
+                        <SmallEditButton />
+                      </NavLink>
+                      <SmallRemoveButton />
+                    </td>
                   </tr>
                 </tbody>
               </table>

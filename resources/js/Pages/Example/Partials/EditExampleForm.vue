@@ -1,4 +1,4 @@
-<script setup>
+<script>
     import InputError from '@/Components/InputError.vue';
     import InputLabel from '@/Components/InputLabel.vue';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -6,26 +6,6 @@
     import TextAreaInput from '@/Components/TextAreaInput.vue';
     import { useForm } from '@inertiajs/vue3';
     import { ref } from 'vue';
-
-
-    const nameInput = ref(null);
-    const form = useForm({
-        name: '',
-        descriptions: '',
-        value: '',
-        start_date: '',
-        end_date: '',
-    });
-
-    const createExample = () => {
-        form.post(route('example.store'), {
-            preserveScroll: true,
-            onSuccess: () => form.reset(),
-            onError: () => {
-            
-            },
-        });
-    }
 </script>
 
 <template>
