@@ -17,12 +17,9 @@ class ExampleController extends Controller
     public function index(Request $request): Response
     {
         $query = Example::orderBy('id', 'desc');
-        // dd(request('search'));
         if(request('search')) {
             $query->where('name', 'LIKE', '%'.request('search').'%');
         }
-        // $query->paginate(20);
-        // dd($query->get());
         return Inertia::render('Example/Index', [
             'examples' => $query->paginate(20),
         ]);
@@ -82,6 +79,9 @@ class ExampleController extends Controller
         \DB::beginTransaction();
         try {
             $example = Example::find(request()->example_id);
+            if(!$example) {
+                return redirect()->back()->with('message', trans('messages.record_not_found'))->with('type', 'warning');
+            }
             $example->update(request()->all());
         } catch (\Exception $e) {
             \DB::rollBack();
@@ -96,8 +96,21 @@ class ExampleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Example $example)
+    public function destroy(Request $request): RedirectResponse
     {
-        //
+        \DB::beginTransaction();
+        try {
+            $example = Example::find(request()->id);
+            if(!$example) {
+                return redirect()->back()->with('message', trans('messages.record_not_found'))->with('type', 'error');
+            }
+            $example->delete();
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('message', trans('messages.error_deleting'))->with('type', 'error');
+        }
+
+        \DB::commit();
+        return redirect()->route('example.index')->with('message', trans('messages.deleted_successfully'))->with('type', 'success');
     }
 }

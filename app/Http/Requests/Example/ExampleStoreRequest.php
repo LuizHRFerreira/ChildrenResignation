@@ -23,7 +23,6 @@ class ExampleStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd(request()->all());
         return [
             'name'              => ['required', 'string', 'max:255'],
             'value'             => ['required', 'int'],

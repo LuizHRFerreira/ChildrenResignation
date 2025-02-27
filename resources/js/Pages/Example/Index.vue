@@ -10,6 +10,11 @@ import TextInput from '@/Components/TextInput.vue';
 import { Link } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import { router, usePage } from '@inertiajs/vue3';
+import SmallAddButton from '@/Components/SmallAddButton.vue';
+import Modal from '@/Components/Modal.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
+import DangerButton from '@/Components/DangerButton.vue';
+import { useForm } from '@inertiajs/vue3';
 
 const page = usePage();
 const examples = page.props.examples;
@@ -21,6 +26,65 @@ watch(search, (newValue) => {
     preserveState: true
   });
 });
+
+
+
+// Deletando
+const exampleId = ref(null); // Reativo
+const confirmingDeletion = ref(false);
+
+function defineExampleId(id){
+  exampleId.value = id;
+  console.log(exampleId.value, id);
+  confirmingDeletion.value = true;
+}
+
+function removeRow() {
+  document.getElementById("example" + exampleId.value).classList.add("d-none");
+  console.log("example" + exampleId.value);
+}
+
+const closeModal = () => {
+    confirmingDeletion.value = false;
+    // formDelete.clearErrors();
+    // formDelete.reset();
+    setTimeout(() => {
+        formDelete.clearErrors();
+        formDelete.reset();
+    }, 100);
+    removeRow();
+
+};
+
+// Monitora mudanças em `exampleId` e atualiza `formDelete.id`
+watch(exampleId, (newId) => {
+  formDelete.id = newId;
+});
+
+const formDelete = useForm({
+  id: exampleId.value,
+});
+
+const deleteUser = () => {
+    formDelete.delete(route('example.destroy'), {
+      preserveScroll: true,
+      onSuccess: () => {
+          closeModal();
+          router.reload({ only: ['examples'] });
+        },
+      onFinish: () => formDelete.reset(),
+    });
+};
+// const deleteUser = () => {
+//     formDelete.delete(route('example.destroy'), {
+//         preserveScroll: true,
+//         onSuccess: () => {
+//           closeModal();
+//           // router.visit(route('example.index'), { replace: true });
+//         },
+//         onFinish: () => formDelete.reset(),
+//     });
+// };
 </script>
 
 <template>
@@ -29,13 +93,13 @@ watch(search, (newValue) => {
 
       <div class="row mb-3 mt-3">
           <div class="col-sm-6">
-            <h3 class="mb-0">Título da página</h3>
+            <h3 class="mb-0">Título da página {{ exampleId }}</h3>
           </div>
           <div class="col-sm-6">
             <div class="float-sm-end">
               
               <NavLink :href="route('example.create')" :active="route().current('example.create')">
-                  <PrimaryButton>Novo</PrimaryButton>
+                  <SmallAddButton>Novo</SmallAddButton>
               </NavLink>
             </div>
           </div>
@@ -60,7 +124,7 @@ watch(search, (newValue) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(example, ) in examples.data" :key="example.id">
+                  <tr v-for="(example, ) in examples.data" :key="example.id" :id="`example${example.id}`">
                     <th>{{ example.name }}</th>
                     <td>{{ example.value }}</td>
                     <td>{{ example.descriptions }}</td>
@@ -68,7 +132,7 @@ watch(search, (newValue) => {
                       <NavLink :href="route('example.edit', { example_id: example.id })">
                         <SmallEditButton />
                       </NavLink>
-                      <SmallRemoveButton />
+                      <SmallRemoveButton @click="defineExampleId( example.id )"></SmallRemoveButton>
                     </td>
                   </tr>
                 </tbody>
@@ -76,6 +140,26 @@ watch(search, (newValue) => {
               <Pagination class="float-end mt-3" :links="page.props.examples.links" />
             </div>
           </div>
+
+          <Modal :show="confirmingDeletion" @close="closeModal">
+            <div class="p-6">
+                <h4>Você está certo de que quer remover esse registro?</h4>
+                <p class="mt-1 text-sm text-gray-600">Esse processo não pode ser revertido!</p>
+
+                <div class="mt-3">
+                    <SecondaryButton @click="closeModal">
+                        Cancelar
+                    </SecondaryButton>
+
+                    <DangerButton
+                        class="ms-3"
+                        @click="deleteUser"
+                    >
+                        Apagar registro
+                    </DangerButton>
+                </div>
+            </div>
+        </Modal>
 
     </AuthenticatedLayout>
 </template>

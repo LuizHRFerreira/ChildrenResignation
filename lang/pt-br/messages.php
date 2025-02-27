@@ -9,4 +9,5 @@ return [
     'error_deleting'            => 'Erro ao deletar',
     'deleted_successfully'      => 'Deletado com sucesso!',
     'error_file_upload'         => 'Erro ao fazer upload do arquivo',
+    'record_not_found'          => 'Não foi possível localizar o registro.'
 ];
