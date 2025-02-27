@@ -66,7 +66,7 @@ class ExampleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(Request $request): Response
     {
         $example = Example::find(request()->example_id);
         return Inertia::render('Example/Edit', [
@@ -77,9 +77,20 @@ class ExampleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Example $example)
+    public function update(ExampleStoreRequest $request, Example $example)
     {
-        //
+        \DB::beginTransaction();
+        try {
+            $example = Example::find(request()->example_id);
+            $example->update(request()->all());
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('message', trans('messages.error_on_update'))->with('type', 'error');
+        }
+
+        \DB::commit();
+        return redirect()->route('example.index')->with('message', trans('messages.updated_successfully'))->with('type', 'success');
+        
     }
 
     /**

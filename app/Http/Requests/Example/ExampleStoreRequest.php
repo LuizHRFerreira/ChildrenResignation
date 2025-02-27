@@ -26,7 +26,7 @@ class ExampleStoreRequest extends FormRequest
         // dd(request()->all());
         return [
             'name'              => ['required', 'string', 'max:255'],
-            'value'             => ['required', 'string', 'max:255'],
+            'value'             => ['required', 'int'],
             'start_date'        => ['required', 'string', 'max:255'],
             'end_date'          => ['required', 'string', 'max:255'],
             'descriptions'      => ['required','string', 'max:255'],

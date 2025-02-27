@@ -1,21 +1,43 @@
-<script>
+<script setup>
     import InputError from '@/Components/InputError.vue';
     import InputLabel from '@/Components/InputLabel.vue';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import TextInput from '@/Components/TextInput.vue';
     import TextAreaInput from '@/Components/TextAreaInput.vue';
     import { useForm } from '@inertiajs/vue3';
-    import { ref } from 'vue';
+    import { router, usePage } from '@inertiajs/vue3';
+
+    const page = usePage();
+    const example = page.props.example;
+
+    const form = useForm({
+        name: example.name,
+        descriptions: example.descriptions,
+        value: example.value,
+        start_date: example.start_date,
+        end_date: example.end_date,
+    });
+
+    
+    const updateExample = () => {
+        form.post(route('example.update', { example_id: example.id }), {
+            preserveScroll: true,
+            onSuccess: () => form.reset(),
+            onError: () => {
+            
+            },
+        });
+    }
 </script>
 
 <template>
     <div>
         <div class="card card-primary card-outline mb-4">
             <div class="card-header">
-                <div class="card-title">Novo exemplo</div>
+                <div class="card-title">Editar exemplo</div>
             </div>
 
-            <form @submit.prevent="createExample" class="mt-6 space-y-6">
+            <form @submit.prevent="updateExample" class="mt-6 space-y-6">
                 <div class="card-body row">
 
                     <div class="col-6">

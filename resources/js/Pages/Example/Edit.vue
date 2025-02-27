@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <!-- <CreateExampleForm /> -->
+        <EditExampleForm />
 
     </AuthenticatedLayout>
 </template>
