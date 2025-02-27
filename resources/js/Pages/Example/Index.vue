@@ -1,13 +1,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SmallEditButton from '@/Components/SmallEditButton.vue';
 import SmallRemoveButton from '@/Components/SmallRemoveButton.vue';
 import NavLink from '@/Components/NavLink.vue';
-import { computed } from 'vue';
 import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Link } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import { router, usePage } from '@inertiajs/vue3';
 import SmallAddButton from '@/Components/SmallAddButton.vue';
@@ -46,13 +43,10 @@ function removeRow() {
 
 const closeModal = () => {
     confirmingDeletion.value = false;
-    // formDelete.clearErrors();
-    // formDelete.reset();
     setTimeout(() => {
         formDelete.clearErrors();
         formDelete.reset();
     }, 100);
-    removeRow();
 
 };
 
@@ -71,20 +65,11 @@ const deleteUser = () => {
       onSuccess: () => {
           closeModal();
           router.reload({ only: ['examples'] });
+          removeRow();
         },
       onFinish: () => formDelete.reset(),
     });
 };
-// const deleteUser = () => {
-//     formDelete.delete(route('example.destroy'), {
-//         preserveScroll: true,
-//         onSuccess: () => {
-//           closeModal();
-//           // router.visit(route('example.index'), { replace: true });
-//         },
-//         onFinish: () => formDelete.reset(),
-//     });
-// };
 </script>
 
 <template>
@@ -93,7 +78,7 @@ const deleteUser = () => {
 
       <div class="row mb-3 mt-3">
           <div class="col-sm-6">
-            <h3 class="mb-0">Título da página {{ exampleId }}</h3>
+            <h3 class="mb-0">Título da página</h3>
           </div>
           <div class="col-sm-6">
             <div class="float-sm-end">

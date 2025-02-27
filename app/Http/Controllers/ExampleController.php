@@ -20,6 +20,7 @@ class ExampleController extends Controller
         if(request('search')) {
             $query->where('name', 'LIKE', '%'.request('search').'%');
         }
+        // dd($query->get());
         return Inertia::render('Example/Index', [
             'examples' => $query->paginate(20),
         ]);

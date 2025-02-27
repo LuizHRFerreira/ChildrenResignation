@@ -155,7 +155,7 @@ onMounted(() => {
                                 <li class="nav-item">
                                     <NavLink class="btn btn-default btn-flat nav-link" :href="route('example.index')" :active="route().current('example.index')">
                                         <i class="nav-icon bi bi-circle"></i>
-                                        <p>Ecamples</p>
+                                        <p>Examples</p>
                                     </NavLink>
                                 </li>
                                 <li class="nav-item">
