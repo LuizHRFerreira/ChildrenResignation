@@ -2,38 +2,31 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// message.index out of the middleware
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    
+    Route::get('/', [MessageController::class, 'index'])->name('message.index');
 
-Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Example
-    Route::group(['prefix' => 'example'], function () {
-        Route::get('/',                             [ExampleController::class, 'index'])->name('example.index');
-        Route::get('/create',                       [ExampleController::class, 'create'])->name('example.create'); 
-        Route::post('/',                            [ExampleController::class, 'store'])->name('example.store'); 
-        Route::post('{example_id}/update',          [ExampleController::class, 'update'])->name('example.update'); 
-        Route::get('/{example_id}',                 [ExampleController::class, 'edit'])->name('example.edit'); 
-        Route::delete('/destroy',                   [ExampleController::class, 'destroy'])->name('example.destroy'); 
+    Route::group(['prefix' => 'edit'], function () {
+        Route::post('{message_uuid}/update', [MessageController::class, 'update'])->name('message.update');
+        Route::get('/{message_uuid}', [MessageController::class, 'edit'])->name('message.edit');
+        Route::delete('/destroy', [MessageController::class, 'destroy'])->name('message.destroy');
+    });
+});
+    
+    Route::group(['prefix' => 'code'], function () {
+        Route::get('/{any?}', [MessageController::class, 'create'])->name('message.Create');
+        Route::post('/', [MessageController::class, 'store'])->name('message.store');
     });
 
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

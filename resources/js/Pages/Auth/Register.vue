@@ -20,13 +20,14 @@ const submit = () => {
 };
 </script>
 
-<style>
+<style scoped>
     .card-body {
         width: 30vh;
     }
 
     .logo {
-        width: 60px;
+        width: 100px;
+        border-radius: 50%;
     }
 </style>
 
@@ -36,7 +37,7 @@ const submit = () => {
             <div class="card auth-card">
                 <div class="card-body">
                     <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                        <img src="../../../../public/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow logo" />
+                        <img src="../../../../public/assets/img/qrmessage.jpg" alt="AdminLTE Logo" class="brand-image opacity-75 shadow logo" />
                     </a>
                     <p class="text-center">Sign in to start your session</p>
                     <form @submit.prevent="submit">

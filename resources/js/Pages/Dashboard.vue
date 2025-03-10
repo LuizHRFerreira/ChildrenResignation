@@ -14,9 +14,10 @@ const data = [
 
 </script>
 
-<style>
+<style scoped>
 @import 'datatables.net-dt';
 </style>
+
 <template>
 
   <Head title="Dashboard" />
@@ -37,19 +38,21 @@ const data = [
               </ol>
             </div>
           </div>
+          
 
           <div class="card card-primary card-outline mb-4">
             <div class="card-header">
-              <div class="card-title">Mostrando informações dos usuários</div>
+              <div class="card-title">informações dos usuários</div>
             </div>
             <div class="card-body">
               <DataTable :data="data" class="display">
                 <thead>
                   <tr>
-                    <th>Nome</th>
+                    <th>Name</th>
                     <th>Idade</th>
                     <th>Email</th>
                     <th>Código</th>
+                    
                   </tr>
                 </thead>
               </DataTable>
@@ -60,6 +63,9 @@ const data = [
       </div>
 
     </div>
+
+    
+    
 
   </AuthenticatedLayout>
 </template>

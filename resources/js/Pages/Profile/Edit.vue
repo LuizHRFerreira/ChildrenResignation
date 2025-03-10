@@ -46,8 +46,6 @@ defineProps({
                     <!-- Update password information -->
                     <UpdatePasswordForm />
 
-                    <!-- Delete account -->
-                    <DeleteUserForm />
                 </div>
             </div>
         </div>

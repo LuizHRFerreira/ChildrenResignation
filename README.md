@@ -1,3 +1,19 @@
+# ChildrenResignation
+Descrição do App:
+
+O aplicativo permitirá a criação e o gerenciamento de QR Codes associados ao cadastro de crianças. O funcionamento será o seguinte:
+
+- Criação de QR Codes: O usuário poderá criar quantos QR Codes desejar, sem limite de quantidade. Cada QR Code gerado estará vinculado a um link único para o cadastro de uma criança.
+
+- Cadastro Inicial: Ao acessar o link do QR Code pela primeira vez, o usuário será direcionado para um formulário de cadastro onde poderá inserir as informações da criança.
+
+- Consulta em Acessos Futuros: Após o primeiro acesso e cadastro, ao acessar o mesmo QR Code novamente, o usuário será redirecionado para uma tela de consulta, onde poderá visualizar e, se necessário, atualizar as informações já cadastradas.
+
+Esse processo permite que o usuário crie múltiplos QR Codes de uma vez e gerencie os cadastros de forma eficiente e prática, com a facilidade de consultar as informações sempre que necessário.
+---
+
+# Como funciona
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 # Laravel Docker Starter Kit

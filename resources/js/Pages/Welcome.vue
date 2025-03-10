@@ -26,14 +26,13 @@ function handleImageError() {
 }
 </script>
 
-<style>
-    .logo {
+<style scoped>
+
+.logo {
         width: 60px;
         margin-right: 4px;
     }
-</style>
-
-<style>
+    
 /* From Uiverse.io by AqFox */ 
 .spinner {
  width: 44px;
@@ -92,12 +91,13 @@ function handleImageError() {
  }
 }
 </style>
+
 <template>
     
     <div class="col-lg-8 mx-auto p-4 py-md-5">
         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
             <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-                <img class="logo" src="../../../public/assets/img/AdminLTELogo.png" alt="">
+                <img class="logo" src="../../../public/assets/img/qrmessage.jpg" alt="">
                 <span class="fs-4">Starter template</span>
             </a>
         </header>
@@ -107,6 +107,7 @@ function handleImageError() {
             <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files
                 with this barebones example featuring some basic HTML and helpful links. Download all our examples to
                 get started.</p>
+
 
 
                 <div class="text-center m-5">

@@ -13007,6 +13007,7 @@ textarea.form-control-lg {
   transition: width 0.3s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
+
   .sidebar-brand {
     transition: none;
   }
