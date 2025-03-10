@@ -1,9 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
+import UpdateHoldingForm from './Partials/UpdateHoldingForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
-import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 defineProps({
     mustVerifyEmail: {
@@ -13,41 +13,44 @@ defineProps({
         type: String,
     },
 });
+
+const activeTab = ref('holding');
+
 </script>
 
 <template>
-    <Head title="Profile" />
-
     <AuthenticatedLayout>
+        <div class="container mt-4">
+            <!-- Nav Tabs -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <button class="nav-link" :class="{ active: activeTab === 'holding' }" @click="activeTab = 'holding'">
+                        Configurações
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" :class="{ active: activeTab === 'profile' }" @click="activeTab = 'profile'">
+                        Atualização de Conta
+                    </button>
+                </li>
+            </ul>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="container">
+            <!-- Conteúdo das Tabs -->
+            <div class="mt-3">
+                <div v-if="activeTab === 'holding'">
+                    <UpdateHoldingForm />
+                </div>
 
-                    <div class="row mb-3 mt-3">
-                        <div class="col-sm-6">
-                        <h3 class="mb-0">Perfil</h3>
-                        </div>
-                        <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Unfixed Layout</li>
-                        </ol>
-                        </div>
-                    </div>
-
-                    <!-- Update profile information -->
+                <div v-if="activeTab === 'profile'">
                     <UpdateProfileInformationForm
                         :must-verify-email="mustVerifyEmail"
                         :status="status"
                         class="max-w-xl"
                     />
-
-                    <!-- Update password information -->
                     <UpdatePasswordForm />
-
                 </div>
             </div>
         </div>
     </AuthenticatedLayout>
 </template>
+

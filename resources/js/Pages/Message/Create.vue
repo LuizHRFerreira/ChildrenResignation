@@ -4,15 +4,17 @@
   import { computed } from 'vue';
   import { usePage } from '@inertiajs/vue3';
   import QRGenerator from '@/Components/QRGenerator.vue'; 
+  import Limit from '@/Components/Limit.vue'; 
+
 
   const page = usePage();
   const messages = page.props.messages;
+  const alert = !!page.props.alert;
 
   const currentPath = computed(() => {
     const parts = page.url.split('/'); 
     return parts.pop(); 
   });
-
 
   const ValueQRCode = computed(() => { const baseURL = window.location.origin; return baseURL + '/code/' + currentPath.value;} );
 
@@ -26,11 +28,15 @@
 </script>
 
 <template>
+
+  <Limit v-if="alert"/>
+
   <div class="container">
     <div class="content-wrapper">
+
         <ShowMessage :message="message" v-if="isCreatePage" />
 
-        <CreateMessageForm v-else />
+        <CreateMessageForm v-else-if="!alert" />
 
         <div class="qr-code-container">
           <QRGenerator :value="ValueQRCode" />

@@ -7,45 +7,46 @@
   import TextInput from '@/Components/TextInput.vue';
   import { ref, watch } from 'vue';
   import { router, usePage } from '@inertiajs/vue3';
-  import SmallAddButton from '@/Components/SmallAddButton.vue';
   import Modal from '@/Components/Modal.vue';
   import SecondaryButton from '@/Components/SecondaryButton.vue';
   import DangerButton from '@/Components/DangerButton.vue';
   import { useForm } from '@inertiajs/vue3';
   import Info from '@/Components/Info.vue';
   import { computed } from 'vue';
+  import Limit from '@/Components/Limit.vue'; 
 
   const page = usePage();
   const messages = page.props.messages;
-  const search = ref(usePage().props.search || '');  
-  const currentPath = computed(() => {return page.url.replace(/^\//,'');});
+  const alert = !!page.props.alert;
+  const search = ref(usePage().props.search || ''); 
+  
 
   // Deletando
-  const messageId = ref(null);
-  const confirmingDeletion = ref(false);
+    const messageId = ref(null);
+    const confirmingDeletion = ref(false);
 
-  function defineMessageId(id){
-    messageId.value = id;
-    console.log(messageId.value, id);
-    confirmingDeletion.value = true;
-  }
+    function defineMessageId(id){
+      messageId.value = id;
+      console.log(messageId.value, id);
+      confirmingDeletion.value = true;
+    }
 
-  function removeRow(id) {
-      const element = document.getElementById("messages" + id);
-      if (element) {
-          element.classList.add("d-none");
-          console.log("messages" + id);
-      }
-  }
+    function removeRow(id) {
+        const element = document.getElementById("messages" + id);
+        if (element) {
+            element.classList.add("d-none");
+            console.log("messages" + id);
+        }
+    }
 
-  const closeModal = () => {
-      confirmingDeletion.value = false;
-      setTimeout(() => {
-          formDelete.clearErrors();
-          formDelete.reset();
-      }, 100);
+    const closeModal = () => {
+        confirmingDeletion.value = false;
+        setTimeout(() => {
+            formDelete.clearErrors();
+            formDelete.reset();
+        }, 100);
 
-  };
+    };
 
   watch(messageId, (newId) => {
     formDelete.id = newId;
@@ -72,6 +73,8 @@
 <template>
     <AuthenticatedLayout>
         <Info/>
+
+        <Limit v-if="alert"/>
 
         <div class="card card-primary card-outline mb-4">
             <div class="card-body">

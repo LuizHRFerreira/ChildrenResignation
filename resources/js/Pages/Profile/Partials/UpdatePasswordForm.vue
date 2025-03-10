@@ -35,7 +35,7 @@ const updatePassword = () => {
 
 <template>
     <section>
-        <h5>Update password</h5>
+        <h5>Senha</h5>
         <div class="card card-primary card-outline mb-4">
             <div class="card-header">
                 <div class="card-title">Atualizar senha</div>
@@ -44,7 +44,7 @@ const updatePassword = () => {
             <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
                 <div class="card-body">
                     <div>
-                        <InputLabel for="current_password" value="Current Password" />
+                        <InputLabel for="current_password" value="Senha atual" />
 
                         <TextInput id="current_password" ref="currentPasswordInput" v-model="form.current_password"
                             type="password" class="mt-1 block w-full" autocomplete="current-password" />
@@ -53,7 +53,7 @@ const updatePassword = () => {
                     </div>
 
                     <div>
-                        <InputLabel for="password" value="New Password" />
+                        <InputLabel for="password" value="Nova senha" />
 
                         <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
                             class="mt-1 block w-full" autocomplete="new-password" />
@@ -62,7 +62,7 @@ const updatePassword = () => {
                     </div>
 
                     <div>
-                        <InputLabel for="password_confirmation" value="Confirm Password" />
+                        <InputLabel for="password_confirmation" value="Confirmar nova senha" />
 
                         <TextInput id="password_confirmation" v-model="form.password_confirmation" type="password"
                             class="mt-1 block w-full" autocomplete="new-password" />

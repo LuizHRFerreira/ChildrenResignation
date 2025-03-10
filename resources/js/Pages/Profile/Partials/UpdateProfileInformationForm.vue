@@ -25,7 +25,7 @@ const form = useForm({
 <template>
     <section>
 
-        <h5>Update profile</h5>
+        <h5>Perfil</h5>
         <div class="card card-primary card-outline mb-4">
             <div class="card-header">
                 <div class="card-title">Atualizar informações do usuário</div>
@@ -34,7 +34,7 @@ const form = useForm({
             <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
                 <div class="card-body">
                     <div>
-                    <InputLabel for="name" value="Name" />
+                    <InputLabel for="name" value="Nome" />
 
                     <TextInput id="name" type="text" v-model="form.name" required autofocus autocomplete="name" />
 

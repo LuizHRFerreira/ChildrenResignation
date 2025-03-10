@@ -15,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile', [ProfileController::class, 'updateHolding'])->name('profile.updateHolding');
 
     Route::group(['prefix' => 'edit'], function () {
         Route::post('{message_uuid}/update', [MessageController::class, 'update'])->name('message.update');

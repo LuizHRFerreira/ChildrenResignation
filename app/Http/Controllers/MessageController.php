@@ -3,29 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use App\Http\Requests\Message\MessageStoreRequest;
-use App\Models\Example;
-use App\Models\Message;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Holding;
+use App\Models\Message;
+use App\Http\Requests\Message\MessageStoreRequest;
 
 class MessageController extends Controller
 {
 
+    protected $limit;
+    protected $highestId;
+    protected $alert;
+
+    public function __construct()
+    {
+        $this->limit = Holding::select('limit')->where('id', env('APP_ID'))->first();
+        $this->highestId = Message::max('id');
+        $this->alert = 0;
+        if ($this->highestId > $this->limit->limit && $this->highestId !== null) {
+            $this->alert = 1;
+        }
+    }
+
     public function index(){
-        $query = Message::select('id','uuid', 'message')->orderBy('id');
+        $messages = Message::withoutTrashed()
+                           ->select('id', 'uuid', 'message')
+                           ->orderBy('id');
 
         return Inertia::render('Message/Index', [
-            'messages' => $query->paginate(10),
+            'messages' => $messages->paginate(10),
+            'alert' => $this->alert,
         ]);
     }
 
     public function create(){
         $query = Message::select('uuid', 'message');
+
         return Inertia::render('Message/Create',[
         'messages' => $query->get(),
+        'alert' => $this->alert
         ]);
     }
 
@@ -44,8 +63,8 @@ class MessageController extends Controller
         } catch (\Exception $e) {
             \DB::rollBack();
             \Log::error("Error saving message:");
-            \Log::error($e->getMessage()); // Log the specific error message
-            \Log::error($e->getTraceAsString()); // Log the stack trace
+            \Log::error($e->getMessage());
+            \Log::error($e->getTraceAsString());
             return redirect()->back()->with('message', trans('messages.error_saving'))->with('type', 'error');
         }
 

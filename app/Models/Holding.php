@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Holding extends Model
 {
     protected $fillable = [
-        'name',
+        'limit',
     ];
 }

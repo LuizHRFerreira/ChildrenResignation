@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('holding_id')->constrained('holding')->onDelete('cascade');
             $table->string('uuid');
             $table->string('message', 1000);
             $table->timestamps();
-            $table->foreignId('holding_id')->constrained('holding')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

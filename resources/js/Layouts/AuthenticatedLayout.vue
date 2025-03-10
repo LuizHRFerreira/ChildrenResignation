@@ -82,7 +82,7 @@
                             <li class="user-footer">
                                
                                 <NavLink class="btn btn-default btn-flat" :href="route('profile.edit')" :active="route().current('profile.edit')">
-                                    Profile
+                                    Configueações
                                 </NavLink>
                                 <NavLink @click="logout" class="btn btn-default btn-flat">
                                     Sign out
